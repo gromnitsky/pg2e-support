@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'nokogiri'
+include Nokogiri::XML
+
+doc = Nokogiri::XML STDIN.read
+if !(footer = doc.at_css('footer'))
+  puts doc.to_xml
+  exit
+end
+
+doc.css('footnote').each_with_index do |footnote, idx|
+  fra = DocumentFragment.parse ''
+
+  aside = Node.new 'aside', fra
+  aside['id'] = "ft-#{idx}"
+
+  sup = Node.new 'sup', fra
+  sup['id'] = "ft-ref-#{idx}"
+  sup.inner_html = "<a href='##{aside['id']}'>#{idx+1}</a>"
+
+  aside.inner_html = [
+    "#{idx+1}.",
+    footnote.content,
+    "<a href='##{sup["id"]}'>↺</a>"
+  ].join ' '
+
+  footnote.replace sup
+  footer << aside
+end
+
+puts doc.to_xml

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:epub="http://www.idpf.org/2007/ops">
+<head><title>.</title></head>
+<body>
+ <nav epub:type="toc">
+  <h1>The History of England From The Accession of James II</h1>
+  <ol>
+   <li>
+    <span>Vol. I.</span>
+    <ol>
+     <li>
+      <span>Chapter I.</span>
+      <ol>
+       <li><a href="ch1.xhtml#s1">Introduction</a></li>
+       <li><a href="ch1.xhtml#s2">Britain under the Romans</a></li>
+       <li><a href="ch1.xhtml#s3">Britain under the Saxons</a></li>
+      </ol>
+     </li>
+     <li>
+      <span>Chapter II.</span>
+      <ol>
+       <li><a href="ch2.xhtml#s1">Conduct of those
+who restored
+the <i>House of Stuart</i>
+unjustly censured</a></li>
+      </ol>
+     </li>
+    </ol>
+   </li>
+  </ol>
+ </nav>
+</body>
+</html>

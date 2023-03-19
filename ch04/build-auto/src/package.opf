@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package version="3.0"
+         unique-identifier="bid"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns="http://www.idpf.org/2007/opf">
+  <metadata>
+    <dc:title>Sing a Song of Sixpence</dc:title>
+    <dc:language>en</dc:language>
+    <dc:identifier id="bid">
+      urn:uuid:e0b65419-513e-4627-80dc-f3a644116fef
+    </dc:identifier>
+    <meta property="dcterms:modified">2023-02-13T00:00:00Z</meta>
+    <dc:creator>Mykola Petrenko</dc:creator>
+    <dc:date>2023-02-15T00:00:00Z</dc:date>
+  </metadata>
+  <manifest>
+    <item id="f1" href="toc.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    <item id="f2" href="chapter1.xhtml" media-type="application/xhtml+xml" />
+    <item id="f3" href="graph.svg" media-type="image/svg+xml" />
+  </manifest>
+  <spine>
+    <itemref idref="f1" linear="no"/>
+    <itemref idref="f2" />
+  </spine>
+</package>

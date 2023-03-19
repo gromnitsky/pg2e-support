@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'nokogiri'
+include Nokogiri::XML
+
+doc = Nokogiri::XML STDIN.read
+doc.css('pre > code').each do |node|
+  lines = node.content.split "\n"
+  ns = NodeSet.new Document.new
+  lines.each_with_index do |line, idx|
+    f = DocumentFragment.parse ''
+    nl = Text.new "\n", f
+    code = Node.new 'code', f
+    code.content = line
+    ns << code
+    ns << nl unless lines.size-1 == idx
+  end
+
+  node.parent.children = ns
+end
+
+puts doc.to_xml

@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'nokogiri'
+
+doc = Nokogiri::HTML5::parse STDIN.read
+doc.css(':root>head>link').each do |l|
+  l["type"] = "text/css" if l["rel"] == "stylesheet"
+end
+
+root = doc.at_css(':root')
+root.default_namespace = "http://www.w3.org/1999/xhtml"
+
+puts '<?xml version="1.0"?>'
+puts doc.to_xhtml

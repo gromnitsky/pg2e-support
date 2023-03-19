@@ -1,0 +1,18 @@
+digraph G {
+  bgcolor="transparent";
+  node [height=.1, fontname="Latin Modern Mono", shape=box];
+#  rankdir=LR;
+
+  h1 [label="<h1>Vol. I.</h1>"];
+  h21 [label="<h2>Chapter I.</h2>"];
+  h31_1 [label="<h3>\l  Britain under\l  the Romans\l</h3>\l"];
+  h31_2 [label="<h3>\l  Britain under\l  the Saxons\l</h3>\l"];
+  h22 [label="<h2>Chapter II.</h2>"];
+  h32_1 [label="<h3>\l  Religious\l  Dissension\l</h3>\l"];
+
+  h1->h21;
+  h1->h22;
+  h21->h31_1;
+  h21->h31_2;
+  h22->h32_1;
+}

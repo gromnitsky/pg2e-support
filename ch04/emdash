@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'nokogiri'
+
+$ignored = [
+  'script',
+  'template',
+  'code',
+  'var',
+  'pre',
+  'kbd',
+  'textarea',
+  'tt',
+  'xmp',
+  'samp',
+  'math',
+  'style',
+]
+
+def process n, cb
+  return if $ignored.index n.name
+  n.content = cb.call(n) if n.text?
+  n.children.each {|k| process k, cb}
+end
+
+def emdash n
+  n.text.gsub(/(?<!-)-{2,3}(?!-)/, '—')
+end
+
+doc = Nokogiri::XML STDIN.read
+process doc, method(:emdash)
+puts doc.to_xml

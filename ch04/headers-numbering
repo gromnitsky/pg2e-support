@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require 'nokogiri'
+require_relative './lib'
+
+abort "Usage: #{$0} start_number < file.html" if ARGV.size != 1
+
+class NumberedHeader < Header
+  def initialize orig
+    super(orig)
+    @orig = orig
+    @unnumbered = orig.classes.index "unnumbered"
+    @number = []
+  end
+  attr_accessor :unnumbered, :number, :orig
+
+  def number! start
+    kids = @kids.filter {|kid| !(kid.unnumbered || kid.unlisted)}
+    return kids.each_with_index {|kid, idx| kid.number! start+idx} if @level == 0
+    @number = [@parent.number, start].flatten
+    kids.each_with_index {|kid, idx| kid.number! idx+1}
+  end
+
+  def text_numbered
+    @number.size > 0 ? "#{@number.join "."} #{@text}" : @text
+  end
+end
+
+start_number = ARGV[0].to_i
+if start_number < 1
+  STDOUT.write STDIN.read
+  exit
+end
+
+doc = Nokogiri::XML STDIN.read
+headers = doc.css('h1,h2,h3').map {|v| NumberedHeader.new v }
+
+root = NumberedHeader.new Header.fakenode
+Header.MkTree root, headers
+root.number! start_number
+
+headers.each do |hdr|
+  hdr.orig.content = hdr.text_numbered
+end
+
+puts doc.to_xml

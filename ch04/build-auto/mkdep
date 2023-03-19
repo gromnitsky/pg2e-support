@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+abort "Usage: #{$0} target dep" if ARGV.size != 2
+target, dep = ARGV
+
+# finds calls to `File.read`
+# inside an erb template
+re = /<%=\s+(File.read)\s*\(?\s*["']([^,]+?)["']/
+
+fd = File.open dep
+while (l = fd.gets)
+  puts "#{target}: #{$2}" if l =~ re
+end

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package version="3.0" unique-identifier="bid" xmlns="http://www.idpf.org/2007/opf">
+ <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <dc:title>Sing a Song of Sixpence</dc:title>
+  <dc:language>en</dc:language>
+  <dc:identifier id="bid">urn:uuid:47962a91-8e6c-41a9-ad98-b9efb7210dae</dc:identifier>
+  <meta property="dcterms:modified">2023-02-13T00:00:00Z</meta>
+ </metadata>
+ <manifest>
+  <item id="f1" href="mytoc.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+  <item id="f2" href="chapter1.xhtml" media-type="application/xhtml+xml" />
+ </manifest>
+ <spine><itemref idref="f2" /></spine>
+</package>

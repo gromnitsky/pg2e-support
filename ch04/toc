@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+require 'nokogiri'
+require 'cgi'
+require_relative './lib'
+
+abort "Usage: #{$0} base_dir file1.xhtml …" if ARGV.size < 2
+
+class TOC_Header < Header
+  def initialize orig, file, base
+    super(orig)
+    @file = file; @base = base
+  end
+
+  def link = Pathname.new(@file).relative_path_from(@base).to_s + "\##{@hid}"
+
+  def to_s indent = 0
+    return @kids.map {|kid| kid.to_s indent}.join "\n" if @level == 0
+    return "" if @unlisted
+
+    prefix = " " * indent*2
+    a = prefix + "<li><a href='#{link}'>#{CGI.escapeHTML @text}</a>"
+    return a+"</li>" if @kids.size == 0
+
+    r = [a]
+    if @kids.size > 0 && !@kids.all? {|kid| kid.unlisted}
+      r << "#{prefix}<ol>"
+      r << @kids.map {|kid| kid.to_s indent + 1}
+      r << "#{prefix}</ol>"
+    end
+    r << "#{prefix}</li>"
+    r.join "\n"
+  end
+end
+
+def nodes files
+  files.map do |file|
+    doc = Nokogiri::XML File.read file
+    doc.css('h1,h2,h3').map do |v|
+      TOC_Header.new v, file, ARGV[0]
+    end
+  end.flatten
+end
+
+root = TOC_Header.new Header.fakenode, "", ""
+Header.MkTree root, nodes(ARGV[1..-1])
+puts root
