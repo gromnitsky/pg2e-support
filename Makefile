@@ -1,5 +1,3 @@
-# copies the code examples from the book's repo
-
 repo := ../pg2e
 
 src := $(wildcard $(repo)/ch01/*.c) \
@@ -21,6 +19,7 @@ src := $(wildcard $(repo)/ch01/*.c) \
 
 dest := $(patsubst $(repo)/%, %, $(src))
 
+# copies the code examples from the book's repo
 all: $(dest)
 
 $(dest): %: $(repo)/%; $(copy)
@@ -29,3 +28,10 @@ define copy
 @mkdir -p $(dir $@)
 cp $< $@
 endef
+
+
+
+web:
+	$(MAKE) -C $(repo) pdf
+	cp -p $(repo)/_out/draft.pdf website/pg2e.pdf
+	rsync -av --progress website/ alex@sigwait.org:/home/alex/public_html/p/pg2e
