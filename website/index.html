@@ -1,0 +1,107 @@
+<!doctype html>
+<title>A practical guide to EPUB</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  root {
+    --body-fg: #191919;
+  }
+
+  @media (min-width: 601px) {
+    body {
+      width: 600px;
+      margin: 8px auto;
+    }
+  }
+
+  body {
+    font-family: Tahoma, sans-serif;
+    color: var(--body-fg);
+  }
+
+  .center { text-align: center; }
+
+  h1 {
+    font-family: Cambria, serif;
+    text-align: center;
+  }
+
+  pre,
+  code {
+    font-family: Cascadia Mono, monospace;
+  }
+
+  main {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin: 2em 0;
+  }
+
+  main > img { width: 30%; }
+  main > div { width: 70%; }
+
+  #buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  #buttons a {
+    display: block;
+    border-radius: 10px;
+    background: #ffa41c;
+    border-color: #ff8f00;
+    padding: 1em;
+    text-decoration: none;
+    color: var(--body-fg);
+  }
+
+  #buttons a:hover { background: #fa8900; }
+
+  #buttons .buy {
+    background-color: #0053a0;
+    border-color: #0053a0;
+    color: #fff;
+  }
+
+  #buttons .buy:hover { background: #2b0eaf; }
+</style>
+
+<h1>A practical guide to EPUB</h1>
+
+<p class="center"><i>DIY tools and recipes for the common folk</i></p>
+
+<main>
+  <img src='pg2e.thumbnail.webp' alt=''>
+  <div>
+    <p style="margin-top: 0">
+    To make e-books, you do not have to be a well-off publisher, a
+    melancholy librarian, or a power user of complex page layout
+    software. A text editor and a ZIP compression utility will do just
+    fine, if not better. There are, of course, <i>details</i>, and
+    this book is all about them.
+    </p>
+
+    <p>
+      We explain how to make an reflowable EPUB from scratch and how
+      to automate this somewhat tedious process.
+    </p>
+
+    <p>The discussed topics include:</p>
+
+    <ul>
+      <li>the EPUB container;</li>
+      <li>what goes into the EPUB;</li>
+      <li>all about metadata;</li>
+      <li>pitfalls of XML;</li>
+      <li>how to generate <i>and number</i> the Table of Contents (TOC);</li>
+      <li>equations, code listings, and footnotes.</li>
+    </ul>
+  </div>
+</main>
+
+<div id="buttons">
+  <a href="pg2e.pdf">Download free PDF</a>
+  <a class="buy" href="https://www.amazon.com/dp/B0BZ6JN33Y">Buy EPUB ($3.00)</a>
+</div>
