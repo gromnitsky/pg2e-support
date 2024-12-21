@@ -20,10 +20,9 @@ doc.css('footnote').each_with_index do |footnote, idx|
   sup.inner_html = "<a href='##{aside['id']}'>#{idx+1}</a>"
 
   aside.inner_html = [
-    "#{idx+1}.",
-    footnote.content,
-    "<a href='##{sup["id"]}'>↺</a>"
-  ].join ' '
+    "<a href='##{sup["id"]}'>#{idx+1}.</a> ",
+    footnote.inner_html.gsub(/\s+/, ' ').strip,
+  ].join ''
 
   footnote.replace sup
   footer << aside

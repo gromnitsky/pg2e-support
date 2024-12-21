@@ -3,7 +3,7 @@
 $(if $(f),,$(error "Usage: tex2img f='E=mc^2' output.png"))
 dpi := 600
 devnull := $(if $(findstring s,$(word 1, $(MAKEFLAGS))),> /dev/null)
-inkscape = inkscape --pdf-poppler -Tlp $< -o $@
+inkscape = inkscape --pdf-poppler -Tlp -n 1 $< -o $@
 
 %.pdf:
 	pdflatex -jobname "$(basename $@)" -interaction=batchmode '\nofiles\documentclass[border=0.2pt]{standalone}\usepackage{amsmath}\usepackage{varwidth}\begin{document}\begin{varwidth}{\linewidth}\[ '$(call se,$(f))' \]\end{varwidth}\end{document}' $(devnull)
